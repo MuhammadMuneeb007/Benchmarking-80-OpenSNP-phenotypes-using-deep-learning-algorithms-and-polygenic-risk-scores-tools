@@ -1,0 +1,73 @@
+Algorithm Index for Reference	Algorithm Name	Dropout	Optimizer	Batch Size	Epochs
+Deep_1	GRU	0.2	Adam	1	50
+Deep_2	GRU	0.2	Adam	1	200
+Deep_3	GRU	0.2	Adam	5	50
+Deep_4	GRU	0.2	Adam	5	200
+Deep_5	GRU	0.5	Adam	1	50
+Deep_6	GRU	0.5	Adam	1	200
+Deep_7	GRU	0.5	Adam	5	50
+Deep_8	GRU	0.5	Adam	5	200
+Deep_9	LSTM	0.2	Adam	1	50
+Deep_10	LSTM	0.2	Adam	1	200
+Deep_11	LSTM	0.2	Adam	5	50
+Deep_12	LSTM	0.2	Adam	5	200
+Deep_13	LSTM	0.5	Adam	1	50
+Deep_14	LSTM	0.5	Adam	1	200
+Deep_15	LSTM	0.5	Adam	5	50
+Deep_16	LSTM	0.5	Adam	5	200
+Deep_17	BILSTM	0.2	Adam	1	50
+Deep_18	BILSTM	0.2	Adam	1	200
+Deep_19	BILSTM	0.2	Adam	5	50
+Deep_20	BILSTM	0.2	Adam	5	200
+Deep_21	BILSTM	0.5	Adam	1	50
+Deep_22	BILSTM	0.5	Adam	1	200
+Deep_23	BILSTM	0.5	Adam	5	50
+Deep_24	BILSTM	0.5	Adam	5	200
+Deep_25	Stack LSTM - GRU	0.2	Adam	1	50
+Deep_26	Stack LSTM - GRU	0.2	Adam	1	200
+Deep_27	Stack LSTM - GRU	0.2	Adam	5	50
+Deep_28	Stack LSTM - GRU	0.2	Adam	5	200
+Deep_29	Stack LSTM - GRU	0.5	Adam	1	50
+Deep_30	Stack LSTM - GRU	0.5	Adam	1	200
+Deep_31	Stack LSTM - GRU	0.5	Adam	5	50
+Deep_32	Stack LSTM - GRU	0.5	Adam	5	200
+Deep_33	Stack LSTM - BILSTM	0.2	Adam	1	50
+Deep_34	Stack LSTM - BILSTM	0.2	Adam	1	200
+Deep_35	Stack LSTM - BILSTM	0.2	Adam	5	50
+Deep_36	Stack LSTM - BILSTM	0.2	Adam	5	200
+Deep_37	Stack LSTM - BILSTM	0.5	Adam	1	50
+Deep_38	Stack LSTM - BILSTM	0.5	Adam	1	200
+Deep_39	Stack LSTM - BILSTM	0.5	Adam	5	50
+Deep_40	Stack LSTM - BILSTM	0.5	Adam	5	200
+Deep_41	Stack BILSTM - LSTM	0.2	Adam	1	50
+Deep_42	Stack BILSTM - LSTM	0.2	Adam	1	200
+Deep_43	Stack BILSTM - LSTM	0.2	Adam	5	50
+Deep_44	Stack BILSTM - LSTM	0.2	Adam	5	200
+Deep_45	Stack BILSTM - LSTM	0.5	Adam	1	50
+Deep_46	Stack BILSTM - LSTM	0.5	Adam	1	200
+Deep_47	Stack BILSTM - LSTM	0.5	Adam	5	50
+Deep_48	Stack BILSTM - LSTM	0.5	Adam	5	200
+Deep_49	Stack BILSTM - GRU	0.2	Adam	1	50
+Deep_50	Stack BILSTM - GRU	0.2	Adam	1	200
+Deep_51	Stack BILSTM - GRU	0.2	Adam	5	50
+Deep_52	Stack BILSTM - GRU	0.2	Adam	5	200
+Deep_53	Stack BILSTM - GRU	0.5	Adam	1	50
+Deep_54	Stack BILSTM - GRU	0.5	Adam	1	200
+Deep_55	Stack BILSTM - GRU	0.5	Adam	5	50
+Deep_56	Stack BILSTM - GRU	0.5	Adam	5	200
+Deep_57	Stack GRU - LSTM	0.2	Adam	1	50
+Deep_58	Stack GRU - LSTM	0.2	Adam	1	200
+Deep_59	Stack GRU - LSTM	0.2	Adam	5	50
+Deep_60	Stack GRU - LSTM	0.2	Adam	5	200
+Deep_61	Stack GRU - LSTM	0.5	Adam	1	50
+Deep_62	Stack GRU - LSTM	0.5	Adam	1	200
+Deep_63	Stack GRU - LSTM	0.5	Adam	5	50
+Deep_64	Stack GRU - LSTM	0.5	Adam	5	200
+Deep_65	Stack GRU - BILSTM	0.2	Adam	1	50
+Deep_66	Stack GRU - BILSTM	0.2	Adam	1	200
+Deep_67	Stack GRU - BILSTM	0.2	Adam	5	50
+Deep_68	Stack GRU - BILSTM	0.2	Adam	5	200
+Deep_69	Stack GRU - BILSTM	0.5	Adam	1	50
+Deep_70	Stack GRU - BILSTM	0.5	Adam	1	200
+Deep_71	Stack GRU - BILSTM	0.5	Adam	5	50
+Deep_72	Stack GRU - BILSTM	0.5	Adam	5	200
