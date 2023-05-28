@@ -113,7 +113,6 @@ for loop in pd.read_csv("allphenotypesname2.txt",header=None)[0]:
     data = data[list(x)]
     
     for col in data.columns:
-     print(loop,data)
      data[["Train"+col, 'Test'+col]] = data[col].str.split('/', expand=True)
      data['Test'+col] = pd.to_numeric(data['Test'+col], errors='coerce')
      del data[col]
