@@ -1,0 +1,51 @@
+﻿
+This document contains the list of steps and the corresponding arguments required to run a specific step. 
+
+Step 1 - Preprocessing.py
+Step 2 - Generate preTransform file.py
+Step 3 - Generate Classes.py
+
+Step 4 - Convert data to plink format.py Phenotype_Name
+Step 4 - Convert data to plink format.py ADHD
+
+Step 5 - List final phenotypes for analysis.py
+
+Step 6 - Generate p-values and GWAS.py Phenotype_Name
+Step 6 - Generate p-values and GWAS.py ADHD
+
+Step 7 - Use machine learning algorithm.py Phenotype_Name Iteration
+
+Step 7 - Use machine learning algorithm.py ADHD 1
+Step 7 - Use machine learning algorithm.py ADHD 2
+Step 7 - Use machine learning algorithm.py ADHD 3
+Step 7 - Use machine learning algorithm.py ADHD 4
+Step 7 - Use machine learning algorithm.py ADHD 5
+
+Step 8 - Get Machine Learning Results.py  Metric
+Step 8 - Get Machine Learning Results.py  MCC
+Step 8 - Get Machine Learning Results.py  AUC
+
+
+Step 9 - Use deep learning algorithm.py Phenotype_Name Iteration
+Step 9 - Use deep learning algorithm.py ADHD 1
+
+
+
+Step 10 - Get Deep Learning Results.py Metric
+Step 10 - Get Deep Learning Results.py AUC
+Step 10 - Get Deep Learning Results.py MCC
+
+
+Step 12 – CalculatePRSLassosum.py Phenotype_Name Iteration
+Step 12 – CalculatePRSLassosum.py  ADHD 1
+
+Step 12 -  CalculatePRSPlink.py Phenotype_Name Iteration
+Step 12 -  CalculatePRSPlink.py  ADHD 1
+
+Step 12 -  CalculatePRSPRSice.py Phenotype_Name Iteration
+Step 12 -  CalculatePRSPRSice.py  ADHD 1
+
+Step 13 -  GetPRSResults.py Metric ToolMetric Tool
+Step 13 -  GetPRSResults.py AUC PlinkAUC Plink
+Step 13 -  GetPRSResults.py AUC LassoumAUC Lassosum
+Step 13 -  GetPRSResults.py AUC PRSiceAUC PRSice
