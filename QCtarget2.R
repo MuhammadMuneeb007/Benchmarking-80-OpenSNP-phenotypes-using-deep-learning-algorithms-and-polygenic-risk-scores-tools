@@ -523,65 +523,33 @@ if (args[2]=="6"){
   sum.stat <- result
   result <-paste("./",args[1],"files","test.QC",sep="//")
   bfile <- result
-  # Read in and process the covariates
-  #result <-paste("./",args[1],"test","YRI.covariate",sep="//")
-  #covariate <- fread(result)
   result <-paste("./",args[1],"files","test.eigenvec",sep="//")
   result <-paste("./",args[1],"files",toString("test.eigenvec"),sep="//")
   pcs <- read.table(result, header=F)
   xx <-ncol(pcs)-2
   pcs <- fread(result) %>% setnames(., colnames(.), c("FID","IID", paste0("PC",1:xx)))
-  # Need as.data.frame here as lassosum doesn't handle data.table 
-  # covariates very well
-  
-  #pcs$FID <- as.character(pcs$FID)
-  #pcs$IID <- as.character(pcs$FID)
-  
-  #pcs$FID <- paste(pcs$FID, pcs$FID,sep="_")
-  #pcs$IID <- paste(pcs$IID, pcs$IID,sep="_")
-  
-  cov <-pcs
-  
-  # We will need the EUR.hg19 file provided by lassosum 
-  # which are LD regions defined in Berisa and Pickrell (2015) for the European population and the hg19 genome.
+  cov <- pcs
   ld.file <- "EUR.hg19"
-  # output prefix
   prefix <- "EUR"
-  # Read in the target phenotype file
   result <-paste("./",args[1],"test","YRI.pheno",sep="//")
-  #bfile <-paste("./",args[1],"train","train",sep="//")
   bfile <-paste("./",args[1],"files","test.QC",sep="//")
-
-  #bfile <-paste("./",args[1],"files","test.QC",sep="//")
-  
   target.pheno <- fread(result)[,c("FID", "IID", "phenotype")]
-  
-  # Read in the summary statistics
   ss <- fread(sum.stat)
-  # Remove P-value = 0, which causes problem in the transformation
   ss <- ss[!P == 0]
-  # Transform the P-values into correlation
+  # ADDED: filter to autosomes only — lassosum EUR.hg19 LD reference only covers chr 1-22
+  ss <- ss[ss$CHR %in% 1:22,]
   cor <- p2cor(p = ss$P,
                n = ss$N,
                sign = log(ss$OR)
   )
   result <-paste("./",args[1],"files","test.QC.fam",sep="//")
-  
   fam <- fread(result)
-  #fam$V1 <- as.character(fam$V1)
-  #fam$V2 <- as.character(fam$V2)
-  
-  #fam$V1 <- paste(fam$V1, fam$V1,sep="_")
-  #fam$V2 <- paste(fam$V2, fam$V2,sep="_")
-  #fam$V6 <- paste(fam$V2, fam$V2,sep="_")
   fam$V6[fam$V6==1]<-0
   fam$V6[fam$V6==2]<-1
-
   fam[,ID:=do.call(paste, c(.SD, sep=":")),.SDcols=c(1:2)]
-  
-  # Run the lassosum pipeline
-  # The cluster parameter is used for multi-threading
-  # You can ignore that if you do not wish to perform multi-threaded processing
+  ref.bim <- fread(paste0(bfile, ".bim"))
+  ref.bim$V1 <- as.integer(gsub("chr", "", ref.bim$V1))
+  fwrite(ref.bim, paste0(bfile, ".bim"), sep="\t", col.names=FALSE)
   out <- lassosum.pipeline(
     cor = cor,
     chr = ss$CHR,
@@ -590,22 +558,17 @@ if (args[2]=="6"){
     A2 = ss$A2,
     ref.bfile = bfile,
     test.bfile = bfile,
-    LDblocks = ld.file, 
+    LDblocks = ld.file,
     cluster=cl
   )
-  # Store the R2 results
   result <-paste("./",args[1],"result","YRI.result",sep="//")
   pdf(file = NULL)
-dev.off()
+  dev.off()
   target.res <- validate(out, pheno = as.data.frame(target.pheno), covar=as.data.frame(cov))
-  # Get the maximum R2
-  help(validate)
   result <-paste("./",args[1],"result","test.txt",sep="//")
-  
   lapply(target.res[["best.pgs"]], write, result, append=TRUE, ncolumns=1000)
   r2 <- max(target.res$validation.table$value)^2
   print(r2)
 }
-
 
   
