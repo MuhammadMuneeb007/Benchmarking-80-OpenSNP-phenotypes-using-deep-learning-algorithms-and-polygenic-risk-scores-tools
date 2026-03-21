@@ -550,7 +550,7 @@ if (args[2]=="6"){
   # Read in the target phenotype file
   result <-paste("./",args[1],"test","YRI.pheno",sep="//")
   #bfile <-paste("./",args[1],"train","train",sep="//")
-  bfile <-paste("./",args[1],"test","test",sep="//")
+  bfile <-paste("./",args[1],"files","test.QC",sep="//")
 
   #bfile <-paste("./",args[1],"files","test.QC",sep="//")
   
@@ -565,7 +565,7 @@ if (args[2]=="6"){
                n = ss$N,
                sign = log(ss$OR)
   )
-  result <-paste("./",args[1],"test","test.fam",sep="//")
+  result <-paste("./",args[1],"files","test.QC.fam",sep="//")
   
   fam <- fread(result)
   #fam$V1 <- as.character(fam$V1)
