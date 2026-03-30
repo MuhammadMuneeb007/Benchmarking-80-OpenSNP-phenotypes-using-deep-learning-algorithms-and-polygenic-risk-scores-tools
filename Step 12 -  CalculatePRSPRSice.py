@@ -1,4 +1,4 @@
-from cgi import test
+ 
 import pandas as pd
 import os
 import glob
@@ -44,42 +44,7 @@ def calculateMCClasso(direc):
    mcc = int(matthews_corrcoef(best[0].values,pheno['f'].values))
    return mcc
 
-def calculateAUClasso(direc):
-  best = pd.read_csv(direc+os.sep+"result"+os.sep+"test.txt",sep="\s+",header=None)
-  pheno = pd.read_csv(direc+os.sep+"test/test.fam",sep="\s+",header=None,names=["a","b","c","d","e","f"])
-  pheno.f[pheno['f']==1]=0
-  pheno.f[pheno['f']==2]=1
-
-  if all(item == 0 for item in best[0].values) or all(item == 1 for item in best[0].values):
-   best[0].values[best[0] >=0.5] = 1
-   best[0].values[best[0] < 0.5] = 0
-   return 0.5
-  else:
-   best[0] = best[0].fillna(0)
-   best[0] = NormalizeData(best[0].values)
-   best[0].values[best[0] >=0.5] = 1
-   best[0].values[best[0] < 0.5] = 0
-   auc = roc_auc_score(best[0].values,pheno['f'].values)
-   return auc
-
-def calculateAUCPRScice(path,test):
-  best = pd.read_csv(path+os.sep+"result"+os.sep+"PRScice_PRS.best",sep="\s+")
-  pheno = pd.read_csv(test+os.sep+"test.fam",sep="\s+",header=None,names=["a","b","c","d","e","f"])
-  pheno.f[pheno['f']==1]=0
-  pheno.f[pheno['f']==2]=1
-
-  if all(item == 0 for item in best["PRS"].values) or all(item == 1 for item in best["PRS"].values):
-   best["PRS"].values[best["PRS"] >=0.5] = 1
-   best["PRS"].values[best["PRS"] < 0.5] = 0
-   return 0.5
-  else:
-   best["PRS"] = best["PRS"].fillna(0)
-   best["PRS"] = NormalizeData(np.array(best["PRS"].values))
-   best["PRS"].values[best["PRS"] >=0.5] = 1
-   best["PRS"].values[best["PRS"] < 0.5] = 0
-   roc_auc_score(best["PRS"].values, pheno['f'].values)
-
-  return roc_auc_score(best["PRS"].values, pheno['f'].values)
+ 
 
 def calculateMCCPRScice(path,test):
   best = pd.read_csv(path+os.sep+"result"+os.sep+"PRScice_PRS.best",sep="\s+")
@@ -137,43 +102,59 @@ def calculateMCCPlink(direc):
         maxxacc = accuracy
   return  maxauc
 
+def calculateAUClasso(direc):
+  best = pd.read_csv(direc+os.sep+"result"+os.sep+"test.txt",sep="\s+",header=None)
+  pheno = pd.read_csv(direc+os.sep+"test/test.fam",sep="\s+",header=None,names=["a","b","c","d","e","f"])
+  pheno.f[pheno['f']==1]=0
+  pheno.f[pheno['f']==2]=1
+ 
+  if all(item == 0 for item in best[0].values) or all(item == 1 for item in best[0].values):
+   return 0.5
+  else:
+   best[0] = NormalizeData(best[0].values)
+   # REMOVED: thresholding to 0/1 — AUC uses continuous score directly
+   auc = roc_auc_score(pheno['f'].values, best[0].values)
+   return auc
+ 
+ 
+def calculateAUCPRScice(path, test):
+  best = pd.read_csv(path+os.sep+"result"+os.sep+"PRScice_PRS.best",sep="\s+")
+  pheno = pd.read_csv(test+os.sep+"test.fam",sep="\s+",header=None,names=["a","b","c","d","e","f"])
+  pheno.f[pheno['f']==1]=0
+  pheno.f[pheno['f']==2]=1
+ 
+  if all(item == 0 for item in best["PRS"].values) or all(item == 1 for item in best["PRS"].values):
+   return 0.0
+  else:
+   best["PRS"] = NormalizeData(np.array(best["PRS"].values))
+   # REMOVED: thresholding to 0/1 — AUC uses continuous score directly
+   return roc_auc_score(pheno['f'].values, best["PRS"].values)
+ 
+ 
 def calculateAUCPlink(direc):
   pheno = pd.read_csv(direc+os.sep+"/test/YRI.pheno",sep="\s+")
   pheno.phenotype[pheno['phenotype']==1]=0
   pheno.phenotype[pheno['phenotype']==2]=1
-
+ 
   files = os.listdir(direc+os.sep+"files")
-  #print(pheno.head())
-
-  maxxacc=0
   maxauc = 0
   profile = ""
-  temp = []
+ 
   for loop in files:
-
-    if ".profile" in loop:      
+    if ".profile" in loop:
       best = pd.read_csv(direc+os.sep+"files"+os.sep+loop,sep="\s+")
-      #plt.hist(best["PRS"].values)
-      #plt.show()
-    
-      #best["PRS"].values[best["PRS"] >= sum(best["PRS"].values)/len(best["PRS"].values)] = 1
-      #best["PRS"].values[best["PRS"] < sum(best["PRS"].values)/len(best["PRS"].values)] = 0
       best["SCORE"] = NormalizeData(best["SCORE"].values)
-    
-      best["SCORE"].values[best["SCORE"] >=0.5] = 1
-      best["SCORE"].values[best["SCORE"] < 0.5] = 0
-      
-      if maxauc<roc_auc_score(best["SCORE"].values, pheno['phenotype'].values):
-        maxauc = roc_auc_score(best["SCORE"].values, pheno['phenotype'].values)
-        temp = NormalizeData(pd.read_csv(direc+os.sep+"files"+os.sep+loop,sep="\s+")["SCORE"].values)
-        profile = loop
-        a= best["SCORE"].values
-        b = pheno['phenotype'].values
-        accuracy = len([a[i] for i in range(0, len(a)) if a[i] == b[i]]) / len(a)
-        maxxacc = accuracy
-
-  return  maxauc
-
+      # REMOVED: thresholding to 0/1 — AUC uses continuous score directly
+      best = best.replace(np.nan, 0)
+      try:
+        auc = roc_auc_score(pheno['phenotype'].values, best["SCORE"].values)
+        if maxauc < auc:
+          maxauc = auc
+          profile = loop
+      except:
+        maxauc = 0
+ 
+  return maxauc
 
 
 
