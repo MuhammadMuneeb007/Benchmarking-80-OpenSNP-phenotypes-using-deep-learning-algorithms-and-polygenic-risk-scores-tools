@@ -150,7 +150,7 @@ python "Step 13 - GetPRSResults.py" AUC LassoumAUC Lassosum
 
 ## Data Availability
 
-Genotype and phenotype data are publicly available from [openSNP](https://opensnp.org/).
+Genotype and phenotype data are publicly available from  https://ngdc.cncb.ac.cn/databasecommons/database/id/4422.
 
 ## License
 
