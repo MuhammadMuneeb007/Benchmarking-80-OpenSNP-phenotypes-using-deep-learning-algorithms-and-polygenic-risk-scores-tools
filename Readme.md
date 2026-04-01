@@ -1,5 +1,5 @@
  
-# A Large-Scale Benchmark of Machine Learning, Deep Learning, and Polygenic Risk Score Workflows for 80 Binary Phenotypes in openSNP
+# Benchmarking Genotype-to-Phenotype Prediction Workflows Across 80 openSNP Phenotypes Using Machine Learning, Deep Learning, and Polygenic Risk Scores
 
 **Muhammad Muneeb, David B. Ascher, YooChan Myung, Samuel F. Feng, Andreas Henschel**
  
