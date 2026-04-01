@@ -36,15 +36,15 @@ This repository provides the complete code and documentation for benchmarking 29
 
 ### Phenotype-Level Winners
 
-![Winner counts by tool](images/plot3.png)
+![Winner counts by tool](plot3.png)
 
 ### AUC Heatmap Across All 80 Phenotypes
 
-![AUC Heatmap](images/plot2.png)
+![AUC Heatmap](plot2.png)
 
 ### ML/DL Performance Grouped by SNP Subset
 
-![SNP grouping](images/plot1.png)
+![SNP grouping](plot1.png)
 
 ---
 
