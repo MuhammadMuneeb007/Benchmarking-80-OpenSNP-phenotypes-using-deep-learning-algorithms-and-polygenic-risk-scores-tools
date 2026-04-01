@@ -1,4 +1,4 @@
-```markdown
+ 
 # A Large-Scale Benchmark of Machine Learning, Deep Learning, and Polygenic Risk Score Workflows for 80 Binary Phenotypes in openSNP
 
 **Muhammad Muneeb, David B. Ascher, YooChan Myung, Samuel F. Feng, Andreas Henschel**
@@ -155,4 +155,4 @@ Genotype and phenotype data are publicly available from [openSNP](https://opensn
 ## License
 
 MIT License
-```
+ 
