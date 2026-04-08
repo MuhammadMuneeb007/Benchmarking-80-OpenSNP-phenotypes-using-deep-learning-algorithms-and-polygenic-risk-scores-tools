@@ -18,7 +18,7 @@ This repository provides the complete code and documentation for benchmarking 29
 
 ## Workflow
 
-![Workflow](flowchart.png)
+![Workflow](Graphicalabstract.jpg)
 
 ---
 
